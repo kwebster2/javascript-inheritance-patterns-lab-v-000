@@ -32,7 +32,7 @@ Circle.prototype.diameter = function(){
 }
 
 Circle.prototype.area = function(){
-  return Math.PI * this.radius ** 2
+  return Math.PI * this.radius * this.radius
 }
 
 Circle.prototype.circumference = function(){
@@ -47,3 +47,38 @@ Polygon.prototype = Object.create(Shape.prototype)
 Polygon.prototype.perimeter = function(){
   return this.sides.reduce((int, next) => int + next.length, 0)
 }
+Polygon.prototype.numberOfSides = function(){
+  return this.sides.length
+}
+
+function Quadrilateral(side1, side2, side3, side4){
+  Polygon.call(this, [new Side(side1), new Side(side2), new Side(side3), new Side(side4)])
+}
+
+Quadrilateral.prototype = Object.create(Polygon.prototype)
+
+function Rectangle(width, height){
+  Quadrilateral.call(this, width, width, height, height)
+  this.width = width,
+  this.height = height
+}
+
+Rectangle.prototype = Object.create(Quadrilateral.prototype)
+Rectangle.prototype.area = function(){
+  return this.width * this.height
+}
+
+function Square(length){
+  Rectangle.call(this, length, length)
+}
+
+Square.prototype = Object.create(Rectangle.prototype)
+Square.prototype.listProperties = function(){
+  return Object.keys(this)
+}
+
+function Triangle(side1, side2, side3){
+  Polygon.call(this, [new Side(side1), new Side(side2), new Side(side3)])
+}
+
+Triangle.prototype = Object.create(Polygon.prototype)
