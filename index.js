@@ -74,7 +74,7 @@ function Square(length){
 
 Square.prototype = Object.create(Rectangle.prototype)
 Square.prototype.listProperties = function(){
-  return Object.keys(this)
+  return Object.keys(this).join(" ")
 }
 
 function Triangle(side1, side2, side3){
